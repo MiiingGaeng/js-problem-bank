@@ -17,10 +17,10 @@
 
 const num1 = 10;
 
-let add = 0;
-let subtract = 20;
-let multiply = 1;
-let divide = 100;
+let add = 0 + num1;
+let subtract = 20 - num1;
+let multiply = 1 * num1;
+let divide = 100 / num1;
 
 // TODO: add, subtract, multiply, divide 변수에 num1 을 이용해서 각각 더하기, 빼기, 곱하기, 나누기 연산을 수행하세요.
 // ex) add = add + num1;

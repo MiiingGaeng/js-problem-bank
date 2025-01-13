@@ -8,8 +8,8 @@
  * 3. greeting 변수를 export 하세요.
  */
 
-const name = "철수";
-const greeting = ``;
+const name = '철수';
+const greeting = `안녕하세요, ${name}님!`;
 
 // export 를 수정하지 마세요.
 export { greeting };
