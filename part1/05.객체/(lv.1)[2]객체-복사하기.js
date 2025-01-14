@@ -9,12 +9,12 @@
  */
 
 const obj = {
-  name: "철수",
+  name: '철수',
   age: 25,
 };
 
 // TODO: spread 연산자를 이용하여 obj를 복사하고, age를 1 늘려주세요.
-const newObj = {};
+const newObj = { ...obj, age: obj.age + 1 };
 
 // export 를 수정하지 마세요.
 export { obj, newObj };
