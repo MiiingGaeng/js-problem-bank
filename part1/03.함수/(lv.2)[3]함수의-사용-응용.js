@@ -7,18 +7,18 @@
  * 3) checkAdult 함수를 이용하여, age를 받아 성인 여부를 adultResult 변수에 할당하세요.
  */
 
-import { calcTotal } from "./(lv.2)[2]계산기-함수.js";
-import { canDrive } from "./(lv.2)[2]논리-연산-함수.js";
-import { checkAdult } from "./(lv.2)[2]삼항-연산-함수.js";
+import { calcTotal } from './(lv.2)[2]계산기-함수.js';
+import { canDrive } from './(lv.2)[2]논리-연산-함수.js';
+import { checkAdult } from './(lv.2)[2]삼항-연산-함수.js';
 
 const price = 1000;
 const quantity = 3;
-let total;
+let total = calcTotal(1000, 3);
 
 const age = 19;
 const hasLicense = true;
-let canDriveResult;
-let adultResult;
+let canDriveResult = canDrive(age, hasLicense);
+let adultResult = checkAdult(age);
 
 // export 를 수정하지 마세요.
 export { total, canDriveResult, adultResult };

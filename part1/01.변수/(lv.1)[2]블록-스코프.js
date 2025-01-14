@@ -15,8 +15,8 @@ function blockScopeTest() {
     var u = 2;
   }
 
-  console.log(w);
   console.log(u);
+  console.log(w);
 }
 
 // export 를 수정하지 마세요.

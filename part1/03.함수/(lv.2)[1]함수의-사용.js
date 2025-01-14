@@ -21,20 +21,20 @@ import {
   subtract,
   multiply,
   divide,
-} from "./(lv.2)[1]기본-산술-연산-함수";
+} from './(lv.2)[1]기본-산술-연산-함수';
 
 // 아래에 add, subtract, multiply, divide 함수를 사용하세요.
 const num1 = 10;
 const num2 = 5;
 
 // TODO: add 함수를 사용하세요.
-let result1;
+let result1 = add(10, 5);
 // TODO: subtract 함수를 사용하세요.
-let result2;
+let result2 = subtract(10, 5);
 // TODO: multiply 함수를 사용하세요.
-let result3;
+let result3 = multiply(10, 5);
 // TODO: divide 함수를 사용하세요.
-let result4;
+let result4 = divide(10, 5);
 
 // export 를 수정하지 마세요.
 export { result1, result2, result3, result4 };
