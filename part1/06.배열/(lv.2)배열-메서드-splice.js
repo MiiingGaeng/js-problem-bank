@@ -15,8 +15,14 @@
  * @returns {any[]} 조작 후의 arr
  */
 function removeAndInsert(arr, start, deleteCount, ...items) {
-  // TODO
+  if (!start) start = 0;
+  arr.splice(start, deleteCount, ...items);
+
+  return arr;
 }
+
+const arr = [1, 2, 3, 4];
+removeAndInsert(arr, 1, 2, 'a', 'b');
 
 // export를 수정하지 마세요.
 export { removeAndInsert };
