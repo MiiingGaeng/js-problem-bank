@@ -10,9 +10,7 @@
  *
  * @returns {{ increase: Function, decrease: Function, currentValue: Function }}
  */
-function createCounter() {
-  let count = 0;
-}
+function createCounter() {}
 
 // export를 수정하지 마세요.
 export { createCounter };
