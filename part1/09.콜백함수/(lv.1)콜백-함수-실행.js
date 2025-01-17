@@ -10,7 +10,7 @@
  * @returns {number} 콜백 함수 실행 결과
  */
 function executeCallback(callback, number) {
-  // TODO: 콜백 함수를 실행해, 그 결과가 반환되도록 작성하세요.
+  return callback(number);
 }
 
 // export를 수정하지 마세요.

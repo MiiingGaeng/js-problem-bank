@@ -14,7 +14,9 @@ function returnFive() {
 }
 
 // TODO: getValueThenDouble 함수를 작성하세요.
-async function getValueThenDouble() {}
+async function getValueThenDouble() {
+  return await returnFive().then((num) => num * 2);
+}
 
 // export를 수정하지 마세요.
 export { getValueThenDouble };

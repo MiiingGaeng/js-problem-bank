@@ -12,7 +12,9 @@
  */
 
 // TODO: getDataWithFallback 함수를 작성하세요.
-async function getDataWithFallback(primary, fallback) {}
+async function getDataWithFallback(primary, fallback) {
+  return primary().catch(() => fallback());
+}
 
 // export를 수정하지 마세요.
 export { getDataWithFallback };
