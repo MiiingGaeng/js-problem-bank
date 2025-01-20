@@ -13,19 +13,19 @@
 function fixCartReferenceIssue() {
   const userACart = {
     items: [
-      { name: "키보드", price: 30000 },
-      { name: "마우스", price: 20000 },
+      { name: '키보드', price: 30000 },
+      { name: '마우스', price: 20000 },
     ],
   };
 
   // TODO: userBCart가 userACart와 독립된 복사본을 가지도록 해야 함
-  let userBCart;
+  let userBCart = structuredClone(userACart);
 
   const coupon = 5000;
 
   applyCoupon(userBCart, coupon);
   function applyCoupon(cart, discount) {
-    // TODO
+    cart.items.forEach((item) => (item.price -= discount));
   }
 
   return { userACart, userBCart };

@@ -16,7 +16,9 @@
  * @returns {object}
  */
 
-function mergeObjects(...objs) {}
+function mergeObjects(...objs) {
+  return Object.assign({}, ...objs);
+}
 
 // export를 수정하지 마세요.
 export { mergeObjects };
