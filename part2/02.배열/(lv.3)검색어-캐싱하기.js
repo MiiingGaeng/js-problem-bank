@@ -13,15 +13,29 @@
  * @returns {void}
  */
 
+let keywordsCount = {};
 let topKeywordsCache = [];
 
 function updateTopKeywords(keywords) {
-  // TODO
+  keywordsCount = {};
+  topKeywordsCache = [];
+
+  for (const keyword of keywords) {
+    if (!keywordsCount[keyword]) keywordsCount[keyword] = 0;
+
+    keywordsCount[keyword]++;
+  }
+
+  const sortedKeywords = Object.entries(keywordsCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map((item) => topKeywordsCache.push(item[0]));
+
+  return topKeywordsCache;
 }
 
 function getTopKeywords() {
-  // TODO
-  return [];
+  return topKeywordsCache;
 }
 
 // export를 수정하지 마세요.
