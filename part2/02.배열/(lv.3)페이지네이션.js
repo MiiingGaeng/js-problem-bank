@@ -12,14 +12,21 @@
  */
 
 const posts = [
-  { id: 1, title: "Hello" },
-  { id: 2, title: "World" },
-  { id: 3, title: "JavaScript" },
-  { id: 4, title: "Paging" },
-  { id: 5, title: "Example" },
+  { id: 1, title: 'Hello' },
+  { id: 2, title: 'World' },
+  { id: 3, title: 'JavaScript' },
+  { id: 4, title: 'Paging' },
+  { id: 5, title: 'Example' },
 ];
 
-function getPage(pageNumber, perPage) {}
+function getPage(pageNumber, perPage) {
+  if (pageNumber < 1 || perPage < 1) return [];
+
+  const startIdx = (pageNumber - 1) * perPage;
+  const endIdx = startIdx + perPage;
+
+  return posts.slice(startIdx, endIdx);
+}
 
 // export 를 수정하지 마세요.
 export { getPage, posts };
