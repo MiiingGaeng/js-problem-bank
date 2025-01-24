@@ -28,7 +28,16 @@
  */
 
 // TODO: groupBy 함수를 작성하세요.
-function groupBy(arr, key) {}
+function groupBy(arr, key) {
+  // 배열.reduce((누적값, 현잿값, 인덱스, 요소) => { return 결과 }, 초깃값);
+  return arr.reduce((acc, cur) => {
+    let category = cur[key];
+    !acc[category] ? (acc[category] = [cur]) : acc[category].push(cur);
+    return acc;
+  }, {});
+
+  return groupObj;
+}
 
 // export를 수정하지 마세요.
 export { groupBy };
