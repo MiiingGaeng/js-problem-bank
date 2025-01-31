@@ -16,12 +16,12 @@
  * @returns {Promise<string>}
  */
 
-let currentToken = "expired";
+let currentToken = 'expired';
 
 async function refreshToken() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve("newToken");
+      resolve('newToken');
     }, 10);
   });
 }
@@ -33,6 +33,10 @@ async function fetch(endpoint, token) {
 async function apiRequest(endpoint, token = currentToken) {
   // TODO: currentToken이 "expired"이면 refreshToken() 후 재요청,
   //       currentToken이 "valid"면 바로 fetch
+  if (currentToken === 'expired') currentToken = await refreshToken();
+
+  const response = await fetch(endpoint, currentToken);
+  return response;
 }
 
 // export를 수정하지 마세요.
