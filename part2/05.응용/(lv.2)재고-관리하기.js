@@ -11,11 +11,17 @@
  */
 
 const inventory = [
-  { id: 100, name: "Keyboard", stock: 10 },
-  { id: 200, name: "Mouse", stock: 5 },
+  { id: 100, name: 'Keyboard', stock: 10 },
+  { id: 200, name: 'Mouse', stock: 5 },
 ];
 
-function addProduct(newItem) {}
+function addProduct(newItem) {
+  inventory.map((item) => {
+    return item.id === newItem.id
+      ? (item.stock += newItem.stock)
+      : inventory.push(newItem);
+  });
+}
 
 // export를 수정하지 마세요.
 export { inventory, addProduct };
