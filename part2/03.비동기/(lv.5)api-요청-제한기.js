@@ -27,7 +27,56 @@
  * @returns {(fn: () => Promise<any>) => Promise<any>}
  */
 
-function createRateLimiter(maxRequests, timeWindow) {}
+function createRateLimiter(maxRequests, timeWindow) {
+  const requestsTimes = [];
+  //request 대기 배열
+  const queue = [];
+
+  const processQueue = () => {
+    //대기 중인 요청 없으면 끝내기
+    if (queue.length === 0) return;
+
+    const now = Date.now();
+    requestsTimes = requestsTimes.filter((time) => {
+      now - time < timeWindow;
+    });
+
+    if (requestsTimes.length < maxRequests) {
+      const { Promise, resolve, reject } = queue.shift(); // 큐에서 요청 꺼내기
+      requestsTimes.push(Date.now()); // 현재 시간 기록
+      Promise().then(resolve).catch(reject); // 요청 실행
+    }
+
+    // 다음 요청 실행을 위해 다시 setTimeout 설정
+    if (queue.length > 0) {
+      setTimeout(processQueue, timeWindow / maxRequests);
+    }
+  };
+
+  return function rateLimitedRequest(fn) {
+    return new Promise((resolve, reject) => {
+      const now = Date.now();
+      // 최근 timeWindow 내의 요청만 유지
+      requestsTimes = requestsTimes.filter(
+        (timestamp) => now - timestamp < timeWindow
+      );
+
+      if (requestsTimes.length < maxRequests) {
+        // 즉시 실행 가능한 경우
+        requestsTimes.push(now);
+        fn().then(resolve).catch(reject);
+      } else {
+        // 요청 초과 시 큐에 추가
+        queue.push({ fn, resolve, reject });
+        if (queue.length === 1) {
+          setTimeout(processQueue, timeWindow / maxRequests);
+        }
+      }
+    });
+  };
+}
+
+//아직 해결 못함..!
 
 // export 를 수정하지 마세요.
 export { createRateLimiter };
