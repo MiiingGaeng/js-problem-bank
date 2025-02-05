@@ -9,7 +9,18 @@
  * @returns {Function}
  */
 
-function once(fn) {}
+function once(fn) {
+  let isCalled = false;
+  let result;
+
+  return function (...args) {
+    if (!isCalled) {
+      result = fn(...args);
+      isCalled = true;
+    }
+    return result;
+  };
+}
 
 // export를 수정하지 마세요.
 export { once };
