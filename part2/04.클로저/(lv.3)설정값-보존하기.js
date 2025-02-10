@@ -15,7 +15,19 @@
  */
 
 // TODO: createConfigManager 함수를 작성하세요.
-function createConfigManager() {}
+function createConfigManager() {
+  const config = {};
+
+  function setConfig(key, value) {
+    return (config[key] = value);
+  }
+
+  function getConfig(key) {
+    return config[key];
+  }
+
+  return { setConfig, getConfig };
+}
 
 // export 를 수정하지 마세요.
 export { createConfigManager };
