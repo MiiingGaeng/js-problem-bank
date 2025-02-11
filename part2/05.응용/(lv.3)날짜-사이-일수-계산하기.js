@@ -12,7 +12,15 @@
  * @returns {number}
  */
 
-function daysBetween(date1, date2) {}
+function daysBetween(date1, date2) {
+  const startDate = new Date(date1);
+  const endDate = new Date(date2);
+
+  const differentTime = Math.abs(endDate.getTime() - startDate.getTime());
+  const differentDay = differentTime / (1000 * 60 * 60 * 24);
+
+  return differentDay;
+}
 
 // export 를 수정하지 마세요.
 export { daysBetween };
