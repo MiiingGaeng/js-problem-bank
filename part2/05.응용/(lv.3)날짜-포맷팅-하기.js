@@ -10,7 +10,23 @@
  * @returns {string}
  */
 
-function formatDate(date) {}
+function formatDate(date) {
+  const year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  //1자리의 경우 0을 붙이도록 처리
+  String(month).length === 1 ? (month = String(month).padStart(2, '0')) : month;
+  String(day).length === 1 ? (day = String(day).padStart(2, '0')) : day;
+  String(hours).length === 1 ? (hours = String(hours).padStart(2, '0')) : hours;
+  String(minutes).length === 1
+    ? (minutes = String(minutes).padStart(2, '0'))
+    : minutes;
+
+  return `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+}
 
 // export를 수정하지 마세요.
 export { formatDate };
