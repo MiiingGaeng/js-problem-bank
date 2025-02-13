@@ -12,6 +12,15 @@
 // TODO: 함수를 작성하세요 (예: toggleCase)
 function toggleCase(str) {
   // TODO
+  const arrStr = str.split('');
+  const arrToggled = arrStr.map((char) => {
+    //소문자이면 => 대문자로
+    if (char === char.toLowerCase()) return char.toUpperCase();
+    //대문자이면 => 소문자로
+    if (char === char.toUpperCase()) return char.toLowerCase();
+  });
+
+  return arrToggled.join('');
 }
 
 // export 를 수정하지 마세요.
