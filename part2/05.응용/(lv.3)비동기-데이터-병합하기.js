@@ -22,7 +22,19 @@
  */
 
 // TODO: asyncDataMerger 함수를 작성하세요.
-async function asyncDataMerger(...asyncFunctions) {}
+async function asyncDataMerger(...asyncFunctions) {
+  const result = new Map();
+  //비동기 함수가 배열로 들어온 것이었다!
+  const values = await Promise.all(asyncFunctions.map((fn) => fn()));
+
+  //Promise.all의 결과는 [[],[]...] 중첩배열 상태 => flat 메서드로 펴주기
+  const mergedValue = values.flat();
+  mergedValue.forEach((obj) =>
+    result.set(obj.id, { ...result.get(obj.id), ...obj })
+  );
+
+  return Array.from(result.values()).sort((a, b) => a.id - b.id);
+}
 
 // export를 수정하지 마세요.
 export { asyncDataMerger };
