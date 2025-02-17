@@ -13,7 +13,20 @@
  * @returns {boolean}
  */
 
-function checkAccess(user, requiredRole) {}
+const ROLE_NUMBER = {
+  admin: 3,
+  manager: 2,
+  user: 1
+};
+
+function checkAccess(user, requiredRole) {
+  const userRole = user.role;
+
+  const userRoleNum = ROLE_NUMBER[userRole];
+  const requiredRoleNum = ROLE_NUMBER[requiredRole];
+
+  return userRoleNum >= requiredRoleNum ? true : false;
+}
 
 // export를 수정하지 마세요.
 export { checkAccess };
