@@ -11,7 +11,15 @@
  * @returns {object}
  */
 
-function pickKeys(obj, keys) {}
+function pickKeys(obj, keys) {
+  const objKeys = Object.keys(obj);
+  const result = keys.reduce((acc, cur) => {
+    objKeys.includes(cur) ? (acc[cur] = obj[cur]) : acc;
+    return acc;
+  }, {});
+
+  return result;
+}
 
 // export 를 수정하지 마세요.
 export { pickKeys };
