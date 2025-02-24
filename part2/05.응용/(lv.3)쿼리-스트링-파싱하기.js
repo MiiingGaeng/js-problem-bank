@@ -10,6 +10,16 @@
  * @returns {object}
  */
 
-function parseQueryString(queryString) {}
+function parseQueryString(queryString) {
+  if (queryString === "?" || !queryString) return {};
+
+  const splitedQuery = queryString.substring(1).split("&");
+  const arrQuery = splitedQuery.map((query) => query.split("="));
+  const result = arrQuery.reduce((acc, cur) => {
+    acc[cur[0]] = cur[1] || "";
+    return acc;
+  }, {});
+  return result;
+}
 
 export { parseQueryString };
