@@ -36,6 +36,39 @@
  * @returns {Array}
  */
 
-function filterComplexData(data, conditions) {}
+function filterComplexData(data, conditions) {
+  //condition이 없을 때 data 반환
+  if (conditions.length === 0) return data;
+
+  return data.filter((item) => {
+    for (let key in conditions) {
+      let expectedValue = conditions[key];
+      let actualValue = getValue(item, key);
+
+      // 배열이면 포함 여부 체크
+      if (Array.isArray(actualValue) && !actualValue.includes(expectedValue)) {
+        return false;
+      }
+
+      // 일반 값 비교
+      if (!Array.isArray(actualValue) && actualValue !== expectedValue) {
+        return false;
+      }
+    }
+    return true;
+  });
+}
+
+const getValue = (obj, key) => {
+  let keys = key.split(".");
+  let value = obj;
+
+  for (let k of keys) {
+    if (!value) return undefined;
+    value = value[k];
+  }
+
+  return value;
+};
 
 export { filterComplexData };
