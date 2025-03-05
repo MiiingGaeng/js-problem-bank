@@ -28,26 +28,23 @@
  */
 
 function createRateLimiter(maxRequests, timeWindow) {
-  const requestsTimes = [];
+  let requestsTimes = [];
   //request 대기 배열
-  const queue = [];
+  let queue = [];
 
   const processQueue = () => {
     //대기 중인 요청 없으면 끝내기
     if (queue.length === 0) return;
 
     const now = Date.now();
-    requestsTimes = requestsTimes.filter((time) => {
-      now - time < timeWindow;
-    });
+    requestsTimes = requestsTimes.filter((time) => now - time < timeWindow);
 
     if (requestsTimes.length < maxRequests) {
-      const { Promise, resolve, reject } = queue.shift(); // 큐에서 요청 꺼내기
-      requestsTimes.push(Date.now()); // 현재 시간 기록
-      Promise().then(resolve).catch(reject); // 요청 실행
+      const { fn, resolve, reject } = queue.shift();
+      requestsTimes.push(Date.now());
+      fn().then(resolve).catch(reject);
     }
 
-    // 다음 요청 실행을 위해 다시 setTimeout 설정
     if (queue.length > 0) {
       setTimeout(processQueue, timeWindow / maxRequests);
     }
@@ -75,8 +72,6 @@ function createRateLimiter(maxRequests, timeWindow) {
     });
   };
 }
-
-//아직 해결 못함..!
 
 // export 를 수정하지 마세요.
 export { createRateLimiter };
